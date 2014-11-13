@@ -2,11 +2,11 @@ CC=g++
 CFLAGS = -Wall
 LIBS = -lGL -lGLU -lglut
 
-OBJ = base.o
+OBJ = animation.o
 
-all: base
+all: tut
 
-base: ${OBJ}
+tut: ${OBJ}
 	${CC} -o $@ ${CFLAGS} ${OBJ} ${LIBS}
 
 .cpp.p:

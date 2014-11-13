@@ -21,14 +21,23 @@ void reshape(GLsizei width, GLsizei height) {
 void display() {                        //  called at repaint request
     glClear(GL_COLOR_BUFFER_BIT);
     
-    glBegin(GL_QUADS);
-        glColor3f(1.0f, 0.0f, 0.0f);    //  foreground color
-        glVertex2f(-0.5f, -0.5f);
-        glVertex2f(0.5f, -0.5f);
-        glVertex2f(0.5f, 0.5f);
-        glVertex2f(-0.5f, 0.5f);
-    glEnd();
+    glMatrixMode(GL_MODELVIEW);         //  set model-view matrix
+    glLoadIdentity();                   //  reset model-view matrix
     
+    for(int i=0; i<200; i++) {
+        glTranslatef((random() % 100 - 50)/1000.0, (random() % 100 - 50)/1000.0, 0.0f);    
+        glBegin(GL_LINES);
+            glColor3f(1.0f, 0.0f, 0.0f);    //  foreground color
+            glVertex2f(-0.5f, -0.5f);
+            glVertex2f(0.5f, -0.5f);
+            
+            glVertex2f(-0.5f, -0.5f);
+            glVertex2f(0.5f, 0.5f);
+            glVertex2f(0.5f, 0.5f);
+            glVertex2f(-0.5f, 0.5f);
+        glEnd();
+        glRotatef(45.0f+(random() % 100)/100.0, 0, 0, 1);
+    } 
     glFlush();
 }
 
